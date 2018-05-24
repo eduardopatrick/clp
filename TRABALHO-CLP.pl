@@ -1,4 +1,3 @@
-
 # Trabalho de CLP 
 # Alunos
 # Francisco José - Mat 1394271
@@ -9,55 +8,60 @@
 # consultar, remover e alterar informações de um cliente. 
 # Utilizar arquivo de texto. O arquivo será 
 # criado na pasta documentos (windows).
- 
+
 use strict;
 use warnings; 
 use feature qw(switch);
- 
+use warnings;
+no warnings 'experimental';
+
 my $meu_arquivo = "clientes.txt";
-     
-     
-print("Digite 1 para criar o arquivo : 1\nDigite 2 para Inserir um cliente : 2\nDigite 3 para consultar um cliente\nDigite 4 para alterar as informações de um cliente\nDigite 5 para remover um cliente");
-my $value = <STDIN>;
-SWITCH: {
-    ($value == 1) && do
-    print("O arquivo foi criado\n")
-        # Usando a função open para criar o arquivo.
-        unless(open FILE, '>'.$meu_arquivo) {
-        die "\nNao foi possivel criar o arquivo $meu_arquivo\n";
-        };
-    ($value == 2) && do {print("Para inserir um cliente digite 1 e para sair digite 9\n"); 
-        while (1)
-     
-    ($value == 3) && do {print("Cancelled\n"); 
-    ($value == 4) && do {print("Cancelled\n"); 
-    ($value == 5) && do {print("Cancelled\n"); 
-    exit()
-    };
-    print("??\n");
+	
+	print("Digite 1 para criar um arquivo	\nDigite 2 para adicionar um cliente	\nDigite 3 para consultar um cliente	\nDigite 4 para modificar um cliente	\nDigite 5 para listar todos os clientes	\nDigite 6 para remover um cliente");
+	
+	
+	my $numero = <STDIN>;
+ 
+given ($numero) {
+   when ($numero == 1) {
+   
+		# Usando a opção open para criar o arquivo.
+		no warnings qw(once);
+		if(open ABRIR, '>'.$meu_arquivo) {
+			print "O arquivo foi criado com sucesso\n"
+		} else {
+			# Se não for possível criar um arquivo, uma mensagem de erro será exibida.
+			print "\nNão é possível criar um arquivo $meu_arquivo\n";
+		}
+	}
+   when ($numero == 2) {
+			# Adicionar um cliente no arquivo
+			print ABRIR "cliente" $count++;
+			print "Digite o nome do cliente: \n";
+			my $nome_cliente = <STDIN>;
+			chomp $nome_cliente;
+			print ABRIR $nome_cliente;
+			
+			print "Digite o telefone do cliente: \n";
+			my $fone_cliente = <STDIN>;
+			chomp $fone_cliente;
+			print ABRIR $fone_cliente;
+			
+       print "$numero is TWO";
+   }
+   when ($numero == 3) {
+       print "$numero is TWO";
+   }
+   when ($numero == 4) {
+       print "$numero is TWO";
+   }
+   when ($numero == 5) {
+       print "$numero is TWO";
+   }
+   when ($numero == 6) {
+       print "$numero is TWO";
+   }
+   default {
+       print "Essa opção não existe. Escolha entre as opções de 1 a 6";
+   }
 }
- 
-# Usando a função open para criar o arquivo.
-        unless(open FILE, '>'.$meu_arquivo) {
-         
-        die "\nNao foi possivel criar o arquivo $meu_arquivo\n";
-        }
-         
-        # Adicionar os textos no arquivo arquivo.
-        print FILE "Isso é um Teste\n";
-         
-        # Sempre que o laço percorrer uma linha do
-        # arquivo e a linha tiver conteúdo então ela será
-        # impressa. No momento em que a linha estiver em branco
-        # ele sairá do laço.
-     
-         
-        while ( my $line = <$meu_arquivo> ) {
-            print $line;
-        }
-        print "Fim do arquivo\n";
-         
-         
-        # Fechar o arquivo.
-        close FILE;
- 
